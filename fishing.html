@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fishing</title>
+    <link href="fishingStyle.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="content" id="header-content">
+        <header><h1>Fishing</h1></header>
+    </div>
+    <div class="content" id="level-content">
+        <label>Fisherman Level:</label>
+        <label id="level">0</label>
+        <small>/</small>
+        <label>100</label>
+        -
+        <label>Required XP: </label>
+        <label id="xpRequired">100</label>
+    </div>
+    <div class="content" id="fishing-content">
+        <div>
+            <button id="fish" class="fishButton">
+                <div>
+                    <div class="fishing-card-info">
+                        <small>Fish</small>
+                        <br>
+                        <strong>Fish</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="fish-area">
+                        <h2 id="rawFish">0 Raw Fish</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="cod" class="codButton">
+                <div>
+                    <div class="fishing-card-info">
+                        <small>Cod</small>
+                        <br>
+                        <strong>Fish</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="fish-area">
+                        <h2 id="rawCod">0 Raw Cod</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="salmon" class="salmonButton">
+                <div>
+                    <div class="fishing-card-info">
+                        <small>Salmon</small>
+                        <br>
+                        <strong>Fish</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="fish-area">
+                        <h2 id="rawSalmon">0 Raw Salmon</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="trout" class="troutButton">
+                <div>
+                    <div class="fishing-card-info">
+                        <small>Trout</small>
+                        <br>
+                        <strong>Fish</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="fish-area">
+                        <h2 id="rawTrout">0 Raw Trout</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<a href="non-combat.html">Back</a>
+<script>
+    let fishAmount = 0;
+    let codAmount = 0;
+    let salmonAmount = 0;
+    let troutAmount = 0;
+
+    let fishGain = 1;
+
+    const fishButton = document.getElementById('fish');
+    const rawFish = document.getElementById('rawFish');
+
+    const codButton = document.getElementById('cod');
+    const rawCod = document.getElementById('rawCod');
+
+    const salmonButton = document.getElementById('salmon');
+    const rawSalmon = document.getElementById('rawSalmon');
+
+    const troutButton = document.getElementById('trout');
+    const rawTrout = document.getElementById('rawTrout');
+
+    fishButton.addEventListener('click', function(e){
+        fishAmount += fishGain;
+        rawFish.innerHTML = `${fishAmount} Raw Fish`;
+    })
+
+    codButton.addEventListener('click', function(e){
+        codAmount += fishGain;
+        rawCod.innerHTML = `${codAmount} Raw Cod`;
+    })
+
+    salmonButton.addEventListener('click', function(e){
+        salmonAmount += fishGain;
+        rawSalmon.innerHTML = `${salmonAmount} Raw Salmon`;
+    })
+
+    troutButton.addEventListener('click', function(e){
+        troutAmount += fishGain;
+        rawTrout.innerHTML = `${troutAmount} Raw Trout`;
+    })
+</script>
+</body>
+</html>

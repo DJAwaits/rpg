@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farming</title>
+    <link href="farmingStyle.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="content" id="header-content">
+        <header><h1>Farming</h1></header>
+    </div>
+    <div class="content" id="level-content">
+        <label>Farmer Level:</label>
+        <label id="level">0</label>
+        <small>/</small>
+        <label>100</label>
+        -
+        <label>Required XP: </label>
+        <label id="xpRequired">100</label>
+    </div>
+    <div class="content" id="fishing-content">
+        <div>
+            <button id="blackberry" class="blackberryButton">
+                <div>
+                    <div class="farming-card-info">
+                        <small>Blackberries</small>
+                        <br>
+                        <strong>Pick</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="plant-area">
+                        <h2 id="pickedBlackberry">0 Blackberries</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="cotton" class="cottonButton">
+                <div>
+                    <div class="farming-card-info">
+                        <small>Cotton</small>
+                        <br>
+                        <strong>Pick</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="plant-area">
+                        <h2 id="pickedCotton">0 Cotton</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="carrot" class="carrotButton">
+                <div>
+                    <div class="farming-card-info">
+                        <small>Carrots</small>
+                        <br>
+                        <strong>Pick</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="plant-area">
+                        <h2 id="pickedCarrot">0 Carrots</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="potato" class="potatoButton">
+                <div>
+                    <div class="farming-card-info">
+                        <small>Potatoes</small>
+                        <br>
+                        <strong>Pick</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="plant-area">
+                        <h2 id="pickedPotato">0 Potatoes</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<a href="non-combat.html">Back</a>
+<script>
+    let blackberryAmount = 0;
+    let cottonAmount = 0;
+    let carrotAmount = 0;
+    let potatoAmount = 0;
+
+    let pickGain = 1;
+
+    const blackberryButton = document.getElementById('blackberry');
+    const pickedBlackberries = document.getElementById('pickedBlackberry');
+
+    const cottonButton = document.getElementById('cotton');
+    const pickedCotton = document.getElementById('pickedCotton');
+
+    const carrotButton = document.getElementById('carrot');
+    const pickedCarrot = document.getElementById('pickedCarrot');
+
+    const potatoButton = document.getElementById('potato');
+    const pickedPotato = document.getElementById('pickedPotato');
+
+    blackberryButton.addEventListener('click', function(e){
+        blackberryAmount += pickGain;
+        pickedBlackberries.innerHTML = `${blackberryAmount} Blackberry`;
+
+        if (blackberryAmount > 1){
+            pickedBlackberries.innerHTML = `${blackberryAmount} Blackberries`;
+        }
+    });
+
+    cottonButton.addEventListener('click', function(e){
+        cottonAmount += pickGain;
+        pickedCotton.innerHTML = `${cottonAmount} Cotton`;
+    });
+
+    carrotButton.addEventListener('click', function(e){
+        carrotAmount += pickGain;
+        pickedCarrot.innerHTML = `${carrotAmount} Carrot`;
+
+        if (carrotAmount > 1){
+            pickedCarrot.innerHTML = `${carrotAmount} Carrots`;
+        }
+    });
+
+    potatoButton.addEventListener('click', function(e){
+        potatoAmount += pickGain;
+        pickedPotato.innerHTML = `${potatoAmount} Potato`;
+
+        if (potatoAmount > 1){
+            pickedPotato.innerHTML = `${potatoAmount} Potatoes`;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mining</title>
+    <link href="miningStyle.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="content" id="header-content">
+        <header><h1>Mining</h1></header>
+    </div>
+    <div class="content" id="level-content">
+        <label>Miner Level:</label>
+        <label id="level">0</label>
+        <small>/</small>
+        <label>100</label>
+        -
+        <label>Required XP: </label>
+        <label id="xpRequired">100</label>
+    </div>
+    <div class="content" id="mining-content">
+        <div>
+            <button id="coal" class="coalButton">
+                <div>
+                    <div class="mining-card-info">
+                        <small>Mine</small>
+                        <br>
+                        <strong>Coal</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="ore-area">
+                        <h2 id="coalOre">0 Coal Ore</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="copper" class="copperButton">
+                <div>
+                    <div class="mining-card-info">
+                        <small>Mine</small>
+                        <br>
+                        <strong>Copper Ore</strong>
+                        <br>
+                        <small>20 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://icon-library.com/images/ore-icon/ore-icon-22.jpg" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="ore-area">
+                        <h2 id="copperOre">0 Copper Ore</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="iron" class="ironButton">
+                <div>
+                    <div class="mining-card-info">
+                        <small>Mine</small>
+                        <br>
+                        <strong>Iron Ore</strong>
+                        <br>
+                        <small>30 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://icon-library.com/images/ore-icon/ore-icon-25.jpg" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="ore-area">
+                        <h2 id="ironOre">0 Iron Ore</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="gold" class="goldButton">
+                <div>
+                    <div class="mining-card-info">
+                        <small>Mine</small>
+                        <br>
+                        <strong>Gold Ore</strong>
+                        <br>
+                        <small>40 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://www.pngkey.com/png/full/308-3083677_gold-ore-icon-vector-gold-ore.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="ore-area">
+                        <h2 id="goldOre">0 Gold Ore</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<a href="non-combat.html" class="back">Back</a>
+<script>
+
+    let coalAmount = 0;
+    let copperAmount = 0;
+    let ironAmount = 0;
+    let goldAmount = 0;
+
+    let mineGain = 1;
+
+    const coalButton = document.getElementById('coal');
+    const coalOre = document.getElementById('coalOre');
+
+    const copperButton = document.getElementById('copper');
+    const copperOre = document.getElementById('copperOre');
+
+    const ironButton = document.getElementById('iron');
+    const ironOre = document.getElementById('ironOre');
+
+    const goldButton = document.getElementById('gold');
+    const goldOre = document.getElementById('goldOre');
+
+    //const level = document.getElementById('level');
+    //const xpRequired = document.getElementById('xpRequired');
+
+    //Todo Create a Level System
+    //Todo Create a Combat System
+    //Todo Create a Mob System
+    //Todo Create a Boss System
+    //Todo Create an Upgrade System for weapons and armors
+    //Todo Create a class system
+    //Todo Create a skill system
+
+    coalButton.addEventListener('click', function(e){
+        coalAmount += mineGain;
+        coalOre.innerHTML = `${coalAmount} Coal Ore`;
+    })
+
+    copperButton.addEventListener('click', function(e){
+        copperAmount += mineGain;
+        copperOre.innerHTML = `${copperAmount} Copper Ore`;
+    })
+
+    ironButton.addEventListener('click', function(e){
+        ironAmount += mineGain;
+        ironOre.innerHTML = `${ironAmount} Iron Ore`;
+    })
+
+    goldButton.addEventListener('click', function(e){
+        goldAmount += mineGain;
+        goldOre.innerHTML = `${goldAmount} Gold Ore`;
+    })
+</script>
+</body>
+</html>

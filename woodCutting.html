@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wood Cutting</title>
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="content" id="header-content">
+        <header><h1>Wood Cutting</h1></header>
+    </div>
+    <div class="content" id="level-content">
+        <label>Forester Level:</label>
+        <label id="level">0</label>
+        <small>/</small>
+        <label>100</label>
+        -
+        <label>Required XP: </label>
+        <label id="xpRequired">100</label>
+    </div>
+    <div class="content" id="woodcutting-content">
+        <div>
+            <button id="oakTree" class="oakTreeButton">
+                <div>
+                    <div class="woodcutting-card-info">
+                        <small>Cut</small>
+                        <br>
+                        <strong>Oak Tree</strong>
+                        <br>
+                        <small>10 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="log-area">
+                        <h2 id="oakLogs">0 Oak Logs</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="birchTree" class="birchTreeButton">
+                <div>
+                    <div class="woodcutting-card-info">
+                        <small>Cut</small>
+                        <br>
+                        <strong>Birch Tree</strong>
+                        <br>
+                        <small>20 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="log-area">
+                        <h2 id="birchLogs">0 Birch Logs</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="spruceTree" class="spruceTreeButton">
+                <div>
+                    <div class="woodcutting-card-info">
+                        <small>Cut</small>
+                        <br>
+                        <strong>Spruce Tree</strong>
+                        <br>
+                        <small>30 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="log-area">
+                        <h2 id="spruceLogs">0 Spruce Logs</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <div>
+            <button id="pineTree" class="pineTreeButton">
+                <div>
+                    <div class="woodcutting-card-info">
+                        <small>Cut</small>
+                        <br>
+                        <strong>Pine Tree</strong>
+                        <br>
+                        <small>30 XP / Click</small>
+                    </div>
+                    <div class="image-area">
+                        <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
+                    </div>
+                    <div class="log-area">
+                        <h2 id="pineLogs">0 Pine Logs</h2>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<a href="non-combat.html" class="back">Back</a>
+<script>
+
+    let oakLogAmount = 0;
+    let birchLogAmount = 0;
+    let spruceLogAmount = 0;
+    let pineLogAmount = 0;
+
+    let chopGain = 1;
+
+    //let xpAmount = 0;
+    //let xpNormalLogGain = 10;
+    //let xpNeeded = 100;
+
+    const oakTreeButton = document.getElementById('oakTree');
+    const oakLogs = document.getElementById('oakLogs');
+
+    const birchTreeButton = document.getElementById('birchTree');
+    const birchLogs = document.getElementById('birchLogs');
+
+    const spruceTreeButton = document.getElementById('spruceTree');
+    const spruceLogs = document.getElementById('spruceLogs');
+
+    const pineTreeButton = document.getElementById('pineTree');
+    const pineLogs = document.getElementById('pineLogs');
+
+    //const level = document.getElementById('level');
+    //const xpRequired = document.getElementById('xpRequired');
+
+    //Todo Create a Level System
+    //Todo Create a Combat System
+    //Todo Create a Mob System
+    //Todo Create a Boss System
+    //Todo Create an Upgrade System for weapons and armors
+    //Todo Create a class system
+    //Todo Create a skill system
+
+    oakTreeButton.addEventListener('click', function(e){
+        oakLogAmount += chopGain;
+        oakLogs.innerHTML = `${oakLogAmount} Oak Log`;
+
+        if (oakLogAmount > 1){
+            oakLogs.innerHTML = `${oakLogAmount} Oak Logs`;
+        }
+    })
+
+    birchTreeButton.addEventListener('click', function(e){
+        birchLogAmount += chopGain;
+        birchLogs.innerHTML = `${birchLogAmount} Birch Log`;
+
+        if (birchLogAmount > 1){
+            birchLogs.innerHTML = `${birchLogAmount} Birch Logs`;
+        }
+    })
+
+    spruceTreeButton.addEventListener('click', function(e){
+        spruceLogAmount += chopGain;
+        spruceLogs.innerHTML = `${spruceLogAmount} Spruce Log`;
+
+        if (spruceLogAmount > 1){
+            spruceLogs.innerHTML = `${spruceLogAmount} Spruce Logs`;
+        }
+    })
+
+    pineTreeButton.addEventListener('click', function(e){
+        pineLogAmount += chopGain;
+        pineLogs.innerHTML = `${pineLogAmount} Pine Log`;
+
+        if (pineLogAmount > 1){
+            pineLogs.innerHTML = `${pineLogAmount} Pine Logs`;
+        }
+    })
+</script>
+</body>
+</html>

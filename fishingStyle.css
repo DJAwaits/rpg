@@ -1,0 +1,124 @@
+body {
+    background-color:grey;
+    color:black;
+}
+
+nav ul {
+    display:flex;
+    flex-wrap:wrap;
+    margin:0;
+    padding:0;
+    z-index:10;
+}
+
+nav li {
+    display:flex;
+    margin: 0;
+    list-style:none;
+    min-width:200px;
+    flex:1;
+    text-align:center;
+    background-color:teal;
+    color:antiquewhite;
+    position:relative;
+}
+
+nav a, a:visited {
+    width:100%;
+    text-decoration:none;
+    padding: 8px 0px;
+    color:antiquewhite;
+}
+
+nav a:hover, a.active {
+    color: green;
+    background-color: rgb(173, 230, 180);
+}
+
+.dropdown-content {
+    position:absolute;
+    top:37.81px;
+    width:100%;
+    display:none;
+    z-index:20;
+}
+
+nav li:hover .dropdown-content {
+    display:block;
+}
+
+.dropdown-content a{
+    font-weight:bold;
+}
+
+.dropdown-content {
+    flex-direction:column;
+}
+
+.image-area {
+    height: 80px;
+    position: relative;
+    color:white;
+    text-align:center;
+    padding-bottom:10px;
+}
+.image {
+    width:60px;
+    height:70px;
+}
+
+.fishing-card-info {
+    color:white;
+    text-align:center;
+    padding-top:10px;
+    padding-bottom:15px;
+}
+
+.fishButton {
+    width: 170px;
+    min-height: 150px;
+    margin:16px;
+    background-color:#343a40;
+}
+
+.fish-area {
+    background-color:black;
+    color:white;
+    text-align:center;
+}
+
+.row {
+    display:flex;
+    gap: 16px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.content {
+    box-shadow: 0 1px 3px 0 rgba(0 0 0 0.1), 0 1px 2px -1px rgba(0 0 0 0.1);
+    display:flex;
+}
+
+.codButton {
+    width: 170px;
+    min-height: 150px;
+    margin:16px;
+    background-color:#343a40;
+}
+
+.salmonButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.troutButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
