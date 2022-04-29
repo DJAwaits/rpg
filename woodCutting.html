@@ -52,7 +52,7 @@
                 </div>
             </button>
             <button id="stopOak" class="hidden stopOakButton">
-                <div class="woddcutting-card-info">
+                <div class="woodcutting-card-info">
                     <small>Cut</small>
                     <br>
                     <strong>Oak Tree</strong>
@@ -247,13 +247,15 @@
     })
 
     oakTreeButton.addEventListener('click', function(e){
-        oakButton.classList.add('hidden');
+        oakTreeButton.classList.add('hidden');
+        console.log(oakTreeButton);
         stopChoppingOakButton.classList.remove('hidden');
+        console.log(stopChoppingOakButton);
         startOakChopping();
     })
 
     stopChoppingOakButton.addEventListener('click', function(e){
-        oakButton.classList.remove('hidden');
+        oakTreeButton.classList.remove('hidden');
         stopChoppingOakButton.classList.add('hidden');
         stopOakChopping();
     })
@@ -272,13 +274,13 @@
     })
 
     birchTreeButton.addEventListener('click', function(e){
-        birchButton.classList.add('hidden');
+        birchTreeButton.classList.add('hidden');
         stopChoppingBirchButton.classList.remove('hidden');
         startBirchChopping();
     })
 
     stopChoppingBirchButton.addEventListener('click', function(e){
-        birchButton.classList.remove('hidden');
+        birchTreeButton.classList.remove('hidden');
         stopChoppingBirchButton.classList.add('hidden');
         stopBirchChopping();
     })
@@ -297,13 +299,13 @@
     })
 
     spruceTreeButton.addEventListener('click', function(e){
-        sspruceButton.classList.add('hidden');
+        spruceTreeButton.classList.add('hidden');
         stopChoppingSpruceButton.classList.remove('hidden');
         startSpruceChopping();
     })
 
     stopChoppingSpruceButton.addEventListener('click', function(e){
-        spruceButton.classList.remove('hidden');
+        spruceTreeButton.classList.remove('hidden');
         stopChoppingSpruceButton.classList.add('hidden');
         stopSpruceChopping();
     })
@@ -322,13 +324,13 @@
     })
 
     pineTreeButton.addEventListener('click', function(e){
-        pineButton.classList.add('hidden');
+        pineTreeButton.classList.add('hidden');
         stopChoppingPineButton.classList.remove('hidden');
         startPineChopping();
     })
 
     stopChoppingPineButton.addEventListener('click', function(e){
-        birchPine.classList.remove('hidden');
+        pineTreeButton.classList.remove('hidden');
         stopChoppingPineButton.classList.add('hidden');
         stopPineChopping();
     })

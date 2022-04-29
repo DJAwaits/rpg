@@ -122,3 +122,35 @@ nav li:hover .dropdown-content {
     margin: 16px;
     background-color:#343a40;
 }
+
+.stopOakButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopBirchButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopSpruceButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopPineButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.cancel-chopping {
+    color:red;
+}
