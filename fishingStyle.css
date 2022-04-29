@@ -74,7 +74,7 @@ nav li:hover .dropdown-content {
     padding-bottom:15px;
 }
 
-.fishButton {
+.carpButton {
     width: 170px;
     min-height: 150px;
     margin:16px;
@@ -121,4 +121,36 @@ nav li:hover .dropdown-content {
     min-height: 150px;
     margin: 16px;
     background-color:#343a40;
+}
+
+.stopCarpButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopCodButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopSalmonButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopTroutButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.cancel-fishing {
+    color:red;
 }

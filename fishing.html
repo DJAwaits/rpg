@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Fishing</title>
     <link href="fishingStyle.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -21,23 +26,40 @@
     </div>
     <div class="content" id="fishing-content">
         <div>
-            <button id="fish" class="fishButton">
+            <button id="carp" class="carpButton">
                 <div>
                     <div class="fishing-card-info">
-                        <small>Fish</small>
+                        <small>Carp</small>
                         <br>
                         <strong>Fish</strong>
                         <br>
                         <small>10 XP / Click</small>
                     </div>
                     <div class="image-area">
-                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                        <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
                     </div>
                     <div class="fish-area">
-                        <h2 id="rawFish">0 Raw Fish</h2>
+                        <h2 id="rawCarp">0 Raw Carp</h2>
                     </div>
                 </div>
             </button>
+            <button id="stopCarp" class="hidden stopCarpButton">
+                <div class="fishing-card-info">
+                    <small>Carp</small>
+                    <br>
+                    <strong>Fish</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-fishing">Stop Fishing</h2>
+                <div class="fish-area">
+                    <h2 id="rawCarpActive">0 Raw Carp</h2>
+                </div>
+            </button>
+            <button id="carpClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="cod" class="codButton">
@@ -50,13 +72,30 @@
                         <small>10 XP / Click</small>
                     </div>
                     <div class="image-area">
-                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                        <img class="image" src="https://cdn-icons-png.flaticon.com/512/2255/2255603.png" height="50" width="60" alt="tree">
                     </div>
                     <div class="fish-area">
                         <h2 id="rawCod">0 Raw Cod</h2>
                     </div>
                 </div>
             </button>
+            <button id="stopCod" class="hidden stopCodButton">
+                <div class="fishing-card-info">
+                    <small>Cod</small>
+                    <br>
+                    <strong>Fish</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/2255/2255603.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-fishing">Stop Fishing</h2>
+                <div class="fish-area">
+                    <h2 id="rawCodActive">0 Raw Cod</h2>
+                </div>
+            </button>
+            <button id="codClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="salmon" class="salmonButton">
@@ -69,13 +108,30 @@
                         <small>10 XP / Click</small>
                     </div>
                     <div class="image-area">
-                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                        <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235432.png" height="50" width="60" alt="tree">
                     </div>
                     <div class="fish-area">
                         <h2 id="rawSalmon">0 Raw Salmon</h2>
                     </div>
                 </div>
             </button>
+            <button id="stopSalmon" class="hidden stopSalmonButton">
+                <div class="fishing-card-info">
+                    <small>Salmon</small>
+                    <br>
+                    <strong>Fish</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235432.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-fishing">Stop Fishing</h2>
+                <div class="fish-area">
+                    <h2 id="rawSalmonActive">0 Raw Carp</h2>
+                </div>
+            </button>
+            <button id="salmonClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="trout" class="troutButton">
@@ -88,56 +144,202 @@
                         <small>10 XP / Click</small>
                     </div>
                     <div class="image-area">
-                        <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                        <img class="image" src="https://cdn2.iconfinder.com/data/icons/fish-and-reptiles/50/Fish_and_Reptiles-15-512.png" height="50" width="60" alt="tree">
                     </div>
                     <div class="fish-area">
                         <h2 id="rawTrout">0 Raw Trout</h2>
                     </div>
                 </div>
             </button>
+            <button id="stopTrout" class="hidden stopTroutButton">
+                <div class="fishing-card-info">
+                    <small>Trout</small>
+                    <br>
+                    <strong>Fish</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn2.iconfinder.com/data/icons/fish-and-reptiles/50/Fish_and_Reptiles-15-512.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-fishing">Stop Fishing</h2>
+                <div class="fish-area">
+                    <h2 id="rawTroutActive">0 Raw Trout</h2>
+                </div>
+            </button>
+            <button id="troutClickerButton" class="hidden"></button>
         </div>
     </div>
 </div>
 <a href="non-combat.html">Back</a>
 <script>
-    let fishAmount = 0;
+    let carpAmount = 0;
     let codAmount = 0;
     let salmonAmount = 0;
     let troutAmount = 0;
 
     let fishGain = 1;
 
-    const fishButton = document.getElementById('fish');
-    const rawFish = document.getElementById('rawFish');
+    const carpButton = document.getElementById('carp');
+    const rawCarp = document.getElementById('rawCarp');
+    const carpClickerButton = document.getElementById('carpClickerButton');
+    const stopFishingCarpButton = document.getElementById('stopCarp');
+    const rawCarpActive = document.getElementById('rawCarpActive');
 
     const codButton = document.getElementById('cod');
     const rawCod = document.getElementById('rawCod');
+    const rawCodActive = document.getElementById('rawCodActive');
+    const codClickerButton = document.getElementById('codClickerButton');
+    const stopFishingCodButton = document.getElementById('stopCod');
 
     const salmonButton = document.getElementById('salmon');
     const rawSalmon = document.getElementById('rawSalmon');
+    const rawSalmonActive = document.getElementById('rawSalmonActive');
+    const salmonClickerButton = document.getElementById('salmonClickerButton');
+    const stopFishingSalmonButton = document.getElementById('stopSalmon');
 
     const troutButton = document.getElementById('trout');
     const rawTrout = document.getElementById('rawTrout');
+    const rawTroutActive = document.getElementById('rawTroutActive');
+    const troutClickerButton = document.getElementById('troutClickerButton');
+    const stopFishingTroutButton = document.getElementById('stopTrout');
 
-    fishButton.addEventListener('click', function(e){
-        fishAmount += fishGain;
-        rawFish.innerHTML = `${fishAmount} Raw Fish`;
+    //Carp Event Listeners
+    carpClickerButton.addEventListener('click', function(e){
+        carpAmount += fishGain;
+        rawCarp.innerHTML = `${carpAmount} Raw Carp`;
+        rawCarpActive.innerHTML = `${carpAmount} Raw Carp`;
+    })
+
+    carpButton.addEventListener('click', function(e){
+        carpButton.classList.add('hidden');
+        stopFishingCarpButton.classList.remove('hidden');
+        startCarpFishing();
+    })
+
+    stopFishingCarpButton.addEventListener('click', function(e){
+        carpButton.classList.remove('hidden');
+        stopFishingCarpButton.classList.add('hidden');
+        stopCarpFishing();
+    })
+
+    //Cod Event Listeners
+    codClickerButton.addEventListener('click', function(e){
+        codAmount += fishGain;
+        rawCod.innerHTML = `${codAmount} Raw Cod`;
+        rawCodActive.innerHTML = `${codAmount} Raw Cod`;
     })
 
     codButton.addEventListener('click', function(e){
-        codAmount += fishGain;
-        rawCod.innerHTML = `${codAmount} Raw Cod`;
+        codButton.classList.add('hidden');
+        stopFishingCodButton.classList.remove('hidden');
+        startCodFishing();
+    })
+
+    stopFishingCodButton.addEventListener('click', function(e){
+        codButton.classList.remove('hidden');
+        stopFishingCodButton.classList.add('hidden');
+        stopCodFishing();
+    })
+
+    //Salmon Event Listeners
+    salmonClickerButton.addEventListener('click', function(e){
+        salmonAmount += fishGain;
+        rawSalmon.innerHTML = `${salmonAmount} Raw Salmon`;
+        rawSalmonActive.innerHTML = `${salmonAmount} Raw Salmon`;
     })
 
     salmonButton.addEventListener('click', function(e){
-        salmonAmount += fishGain;
-        rawSalmon.innerHTML = `${salmonAmount} Raw Salmon`;
+        salmonButton.classList.add('hidden');
+        stopFishingSalmonButton.classList.remove('hidden');
+        startSalmonFishing();
+    })
+
+    stopFishingSalmonButton.addEventListener('click', function(e){
+        salmonButton.classList.remove('hidden');
+        stopFishingSalmonButton.classList.add('hidden');
+        stopSalmonFishing();
+    })
+
+    //Trout Event Listeners
+    troutClickerButton.addEventListener('click', function(e){
+        troutAmount += fishGain;
+        rawTrout.innerHTML = `${troutAmount} Raw Trout`;
+        rawTroutActive.innerHTML = `${troutAmount} Raw Trout`;
     })
 
     troutButton.addEventListener('click', function(e){
-        troutAmount += fishGain;
-        rawTrout.innerHTML = `${troutAmount} Raw Trout`;
+        troutButton.classList.add('hidden');
+        stopFishingTroutButton.classList.remove('hidden');
+        startTroutFishing();
     })
+
+    stopFishingTroutButton.addEventListener('click', function(e){
+        troutButton.classList.remove('hidden');
+        stopFishingTroutButton.classList.add('hidden');
+        stopTroutFishing();
+    })
+
+    //Carp Button Functions
+    let carpFishingInterval;
+
+    function carp(){
+        document.getElementById("carpClickerButton").click();
+    }
+
+    function startCarpFishing(){
+        carpFishingInterval = setInterval(carp, 10000);
+    }
+
+    function stopCarpFishing(){
+        clearInterval(carpFishingInterval);
+    }
+
+    //Cod Button Functions
+    let codFishingInterval;
+
+    function cod(){
+        document.getElementById("codClickerButton").click();
+    }
+
+    function startCodFishing(){
+        codFishingInterval = setInterval(cod, 10000);
+    }
+
+    function stopCodFishing(){
+        clearInterval(codFishingInterval);
+    }
+
+    //Salmon Button Functions
+    let salmonFishingInterval;
+
+    function salmon(){
+        document.getElementById("salmonClickerButton").click();
+    }
+
+    function startSalmonFishing(){
+        salmonFishingInterval = setInterval(salmon, 10000);
+    }
+
+    function stopSalmonFishing(){
+        clearInterval(salmonFishingInterval);
+    }
+
+    //Trout Button Functions
+    let troutFishingInterval;
+
+    function trout() {
+        document.getElementById("troutClickerButton").click();
+    }
+
+    function startTroutFishing(){
+        troutFishingInterval = setInterval(trout, 10000);
+    }
+
+    function stopTroutFishing(){
+        clearInterval(troutFishingInterval);
+    }
+
 </script>
 </body>
 </html>
