@@ -16,13 +16,21 @@
         <header><h1>Wood Cutting</h1></header>
     </div>
     <div class="content" id="level-content">
-        <label>Forester Level:</label>
-        <label id="level">0</label>
-        <small>/</small>
-        <label>100</label>
-        -
-        <label>Required XP: </label>
-        <label id="xpRequired">100</label>
+        <div class="row">
+            <label>Forester Level:</label>
+            <label id="currentLevel">0</label>
+            /
+            <label>100</label>
+        </div>
+        <br>
+        <div class="row">  
+            <label>Current Exp: </label>
+            <label id="currentExp">0</label>
+        </div>
+        <div class="row">
+            <label>Required XP: </label>
+            <label id="missingExp">100</label>
+        </div>
     </div>
     <div class="content" id="woodcutting-content">
         <div>
@@ -43,6 +51,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopOak" class="hidden stopOakButton">
+                <div class="woddcutting-card-info">
+                    <small>Cut</small>
+                    <br>
+                    <strong>Oak Tree</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-cutting">Stop Fishing</h2>
+                <div class="log-area">
+                    <h2 id="oakLogsActive">0 Oak Log</h2>
+                </div>
+            </button>
+            <button id="oakClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="birchTree" class="birchTreeButton">
@@ -62,6 +87,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopBirch" class="hidden stopBirchButton">
+                <div class="woodcutting-card-info">
+                    <small>Cut</small>
+                    <br>
+                    <strong>Birch Tree</strong>
+                    <br>
+                    <small>20 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-cutting">Stop Cutting</h2>
+                <div class="log-area">
+                    <h2 id="birchLogsActive">0 Birch Logs</h2>
+                </div>
+            </button>
+            <button id="birchClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="spruceTree" class="spruceTreeButton">
@@ -81,6 +123,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopSpruce" class="hidden stopSpruceButton">
+                <div class="woodcutting-card-info">
+                    <small>Cut</small>
+                    <br>
+                    <strong>Spruce Tree</strong>
+                    <br>
+                    <small>30 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-cutting">Stop Cutting</h2>
+                <div class="log-area">
+                    <h2 id="spruceLogsActive">0 Spruce Logs</h2>
+                </div>
+            </button>
+            <button id="spruceClickerButton" class="hidden"></button>   
         </div>
         <div>
             <button id="pineTree" class="pineTreeButton">
@@ -90,7 +149,7 @@
                         <br>
                         <strong>Pine Tree</strong>
                         <br>
-                        <small>30 XP / Click</small>
+                        <small>40 XP / Click</small>
                     </div>
                     <div class="image-area">
                         <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
@@ -100,6 +159,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopPine" class="hidden stopPineButton">
+                <div class="woodcutting-card-info">
+                    <small>Cut</small>
+                    <br>
+                    <strong>Pine Tree</strong>
+                    <br>
+                    <small>40 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-cutting">Stop Cutting</h2>
+                <div class="log-area">
+                    <h2 id="pineLogsActive">0 Spruce Logs</h2>
+                </div>
+            </button>
+            <button id="pineClickerButton" class="hidden"></button>
         </div>
     </div>
 </div>
@@ -111,28 +187,46 @@
     let spruceLogAmount = 0;
     let pineLogAmount = 0;
 
+    let expAmount = 0;
+    let oakExpGain = 10;
+    let birchExpGain = 20;
+    let spruceExpGain = 30;
+    let pineExpGain = 40;
+    let gainLevel = 1;
+    let levelAmount = 1;
+    let requiredExp = 100;
+    let requiredExpActive = 100;
+
     let chopGain = 1;
 
-    //let xpAmount = 0;
-    //let xpNormalLogGain = 10;
-    //let xpNeeded = 100;
+    const currentExp = document.getElementById('currentExp');
+    const currentLevel = document.getElementById('currentLevel');
+    const missingExp = document.getElementById('missingExp');
 
     const oakTreeButton = document.getElementById('oakTree');
     const oakLogs = document.getElementById('oakLogs');
+    const oakClickerButton = document.getElementById('oakClickerButton');
+    const stopChoppingOakButton = document.getElementById('stopOak');
+    const oakLogsActive = document.getElementById('oakLogsActive');
 
     const birchTreeButton = document.getElementById('birchTree');
     const birchLogs = document.getElementById('birchLogs');
+    const birchClickerButton = document.getElementById('birchClickerButton');
+    const stopChoppingBirchButton = document.getElementById('stopBirch');
+    const birchLogsActive = document.getElementById('birchLogsActive');
 
     const spruceTreeButton = document.getElementById('spruceTree');
     const spruceLogs = document.getElementById('spruceLogs');
+    const spruceClickerButton = document.getElementById('spruceClickerButton');
+    const stopChoppingSpruceButton = document.getElementById('stopSpruce');
+    const spruceLogsActive = document.getElementById('spruceLogsActive');
 
     const pineTreeButton = document.getElementById('pineTree');
     const pineLogs = document.getElementById('pineLogs');
+    const pineClickerButton = document.getElementById('pineClickerButton');
+    const stopChoppingPineButton = document.getElementById('stopPine');
+    const pineLogsActive = document.getElementById('pineLogsActive');
 
-    //const level = document.getElementById('level');
-    //const xpRequired = document.getElementById('xpRequired');
-
-    //Todo Create a Level System
     //Todo Create a Combat System
     //Todo Create a Mob System
     //Todo Create a Boss System
@@ -140,41 +234,182 @@
     //Todo Create a class system
     //Todo Create a skill system
 
-    oakTreeButton.addEventListener('click', function(e){
-        oakLogAmount += chopGain;
-        oakLogs.innerHTML = `${oakLogAmount} Oak Log`;
+    //Oak tree Event Listeners
+    oakClickerButton.addEventListener('click', function(e){
+        oakAmount += cutGain;
+        oakLogs.innerHTML = `${oakLogAmount} Oak Logs`;
+        oakLogsActive.innerHTML = `${oakLogAmount} Oak Logs`;
+        expAmount += oakExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= oakExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
+    })
 
-        if (oakLogAmount > 1){
-            oakLogs.innerHTML = `${oakLogAmount} Oak Logs`;
-        }
+    oakTreeButton.addEventListener('click', function(e){
+        oakButton.classList.add('hidden');
+        stopChoppingOakButton.classList.remove('hidden');
+        startOakChopping();
+    })
+
+    stopChoppingOakButton.addEventListener('click', function(e){
+        oakButton.classList.remove('hidden');
+        stopChoppingOakButton.classList.add('hidden');
+        stopOakChopping();
+    })
+
+    //Birch tree Event Listeners
+
+    birchClickerButton.addEventListener('click', function(e){
+        birchAmount += cutGain;
+        birchLogs.innerHTML = `${birchLogAmount} Birch Logs`;
+        birchLogsActive.innerHTML = `${birchLogAmount} Birch Logs`;
+        expAmount += birchExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= birchExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     birchTreeButton.addEventListener('click', function(e){
-        birchLogAmount += chopGain;
-        birchLogs.innerHTML = `${birchLogAmount} Birch Log`;
+        birchButton.classList.add('hidden');
+        stopChoppingBirchButton.classList.remove('hidden');
+        startBirchChopping();
+    })
 
-        if (birchLogAmount > 1){
-            birchLogs.innerHTML = `${birchLogAmount} Birch Logs`;
-        }
+    stopChoppingBirchButton.addEventListener('click', function(e){
+        birchButton.classList.remove('hidden');
+        stopChoppingBirchButton.classList.add('hidden');
+        stopBirchChopping();
+    })
+
+    //Spruce Tree Event Listeners
+
+    spruceClickerButton.addEventListener('click', function(e){
+        spruceAmount += cutGain;
+        spruceLogs.innerHTML = `${spruceLogAmount} Spruce Logs`;
+        SpruceLogsActive.innerHTML = `${spruceLogAmount} Spruce Logs`;
+        expAmount += spruceExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= spruceExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     spruceTreeButton.addEventListener('click', function(e){
-        spruceLogAmount += chopGain;
-        spruceLogs.innerHTML = `${spruceLogAmount} Spruce Log`;
+        sspruceButton.classList.add('hidden');
+        stopChoppingSpruceButton.classList.remove('hidden');
+        startSpruceChopping();
+    })
 
-        if (spruceLogAmount > 1){
-            spruceLogs.innerHTML = `${spruceLogAmount} Spruce Logs`;
-        }
+    stopChoppingSpruceButton.addEventListener('click', function(e){
+        spruceButton.classList.remove('hidden');
+        stopChoppingSpruceButton.classList.add('hidden');
+        stopSpruceChopping();
+    })
+
+    //Pine Tree Event Listeners
+
+    pineClickerButton.addEventListener('click', function(e){
+        pineAmount += cutGain;
+        pineLogs.innerHTML = `${pineLogAmount} Pine Logs`;
+        pineLogsActive.innerHTML = `${pineLogAmount} Pine Logs`;
+        expAmount += pineExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= pineExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     pineTreeButton.addEventListener('click', function(e){
-        pineLogAmount += chopGain;
-        pineLogs.innerHTML = `${pineLogAmount} Pine Log`;
-
-        if (pineLogAmount > 1){
-            pineLogs.innerHTML = `${pineLogAmount} Pine Logs`;
-        }
+        pineButton.classList.add('hidden');
+        stopChoppingPineButton.classList.remove('hidden');
+        startPineChopping();
     })
+
+    stopChoppingPineButton.addEventListener('click', function(e){
+        birchPine.classList.remove('hidden');
+        stopChoppingPineButton.classList.add('hidden');
+        stopPineChopping();
+    })
+
+    //Oak Button Functions
+    let oakChoppingInterval;
+
+    function oak(){
+        document.getElementById("oakClickerButton").click();
+    }
+
+    function startOakChopping(){
+        oakChoppingInterval = setInterval(oak, 10000);
+    }
+
+    function stopOakChopping(){
+        clearInterval(oakChoppingInterval);
+    }
+
+    //Birch Button Functions
+    let birchChoppingInterval;
+
+    function birch(){
+        document.getElementById("birchClickerButton").click();
+    }
+
+    function startBirchChopping(){
+        birchChoppingInterval = setInterval(birch, 10000);
+    }
+
+    function stopBirchChopping(){
+        clearInterval(birchChoppingInterval);
+    }
+
+    //Spruce Button Functions
+    let spruceChoppingInterval;
+
+    function spruce(){
+        document.getElementById("spruceClickerButton").click();
+    }
+
+    function startSpruceChopping(){
+        spruceChoppingInterval = setInterval(spruce, 10000);
+    }
+
+    function stopSpruceChopping(){
+        clearInterval(spruceChoppingInterval);
+    }
+
+    //Pine Button Functions
+    let pineChoppingInterval;
+
+    function pine(){
+        document.getElementById("pineClickerButton").click();
+    }
+
+    function startPineChopping(){
+        pineChoppingInterval = setInterval(pine, 10000);
+    }
+
+    function stopPineChopping(){
+        clearInterval(pineChoppingInterval);
+    }
+
+    //Level Up Function
+
+    function levelUp(){
+            if (expAmount >= requiredExp){
+            levelAmount += gainLevel;
+            currentLevel.innerHTML = `Level ${levelAmount}`;
+            expAmount = 0
+            currentExp.innerHTML = `${expAmount} exp`;
+            requiredExpActive = 100;
+            missingExp.innerHTML = `${requiredExpActive} exp`;
+            };
+
+            /*if (levelAmount >= 1){
+                requiredExp *= 2;
+                console.log(requiredExp);
+            }*/
+        }
 </script>
 </body>
 </html>

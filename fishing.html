@@ -16,22 +16,30 @@
         <header><h1>Fishing</h1></header>
     </div>
     <div class="content" id="level-content">
-        <label>Fisherman Level:</label>
-        <label id="level">0</label>
-        <small>/</small>
-        <label>100</label>
-        -
-        <label>Required XP: </label>
-        <label id="xpRequired">100</label>
+        <div class="row">
+            <label>Fisherman Level:</label>
+            <label id="currentLevel">0</label>
+            /
+            <label>100</label>
+        </div>
+        <br>
+        <div class="row">  
+            <label>Current Exp: </label>
+            <label id="currentExp">0</label>
+        </div>
+        <div class="row">
+            <label>Required XP: </label>
+            <label id="missingExp">100</label>
+        </div>
     </div>
     <div class="content" id="fishing-content">
         <div>
             <button id="carp" class="carpButton">
                 <div>
                     <div class="fishing-card-info">
-                        <small>Carp</small>
+                        <small>Fish</small>
                         <br>
-                        <strong>Fish</strong>
+                        <strong>Carp</strong>
                         <br>
                         <small>10 XP / Click</small>
                     </div>
@@ -45,9 +53,9 @@
             </button>
             <button id="stopCarp" class="hidden stopCarpButton">
                 <div class="fishing-card-info">
-                    <small>Carp</small>
+                    <small>Fish</small>
                     <br>
-                    <strong>Fish</strong>
+                    <strong>Carp</strong>
                     <br>
                     <small>10 XP / Click</small>
                 </div>
@@ -65,9 +73,9 @@
             <button id="cod" class="codButton">
                 <div>
                     <div class="fishing-card-info">
-                        <small>Cod</small>
+                        <small>Fish</small>
                         <br>
-                        <strong>Fish</strong>
+                        <strong>Cod</strong>
                         <br>
                         <small>10 XP / Click</small>
                     </div>
@@ -81,9 +89,9 @@
             </button>
             <button id="stopCod" class="hidden stopCodButton">
                 <div class="fishing-card-info">
-                    <small>Cod</small>
+                    <small>Fish</small>
                     <br>
-                    <strong>Fish</strong>
+                    <strong>Cod</strong>
                     <br>
                     <small>10 XP / Click</small>
                 </div>
@@ -101,9 +109,9 @@
             <button id="salmon" class="salmonButton">
                 <div>
                     <div class="fishing-card-info">
-                        <small>Salmon</small>
+                        <small>Fish</small>
                         <br>
-                        <strong>Fish</strong>
+                        <strong>Salmon</strong>
                         <br>
                         <small>10 XP / Click</small>
                     </div>
@@ -117,9 +125,9 @@
             </button>
             <button id="stopSalmon" class="hidden stopSalmonButton">
                 <div class="fishing-card-info">
-                    <small>Salmon</small>
+                    <small>Fish</small>
                     <br>
-                    <strong>Fish</strong>
+                    <strong>Salmon</strong>
                     <br>
                     <small>10 XP / Click</small>
                 </div>
@@ -128,7 +136,7 @@
                 </div>
                 <h2 class="cancel-fishing">Stop Fishing</h2>
                 <div class="fish-area">
-                    <h2 id="rawSalmonActive">0 Raw Carp</h2>
+                    <h2 id="rawSalmonActive">0 Raw Salmon</h2>
                 </div>
             </button>
             <button id="salmonClickerButton" class="hidden"></button>
@@ -137,9 +145,9 @@
             <button id="trout" class="troutButton">
                 <div>
                     <div class="fishing-card-info">
-                        <small>Trout</small>
+                        <small>Fish</small>
                         <br>
-                        <strong>Fish</strong>
+                        <strong>Trout</strong>
                         <br>
                         <small>10 XP / Click</small>
                     </div>
@@ -153,9 +161,9 @@
             </button>
             <button id="stopTrout" class="hidden stopTroutButton">
                 <div class="fishing-card-info">
-                    <small>Trout</small>
+                    <small>Fish</small>
                     <br>
-                    <strong>Fish</strong>
+                    <strong>Trout</strong>
                     <br>
                     <small>10 XP / Click</small>
                 </div>
@@ -178,7 +186,21 @@
     let salmonAmount = 0;
     let troutAmount = 0;
 
+    let expAmount = 0;
+    let carpExpGain = 10;
+    let codExpGain = 20;
+    let salmonExpGain = 30;
+    let troutExpGain = 40;
+    let gainLevel = 1;
+    let levelAmount = 1;
+    let requiredExp = 100;
+    let requiredExpActive = 100;
+
     let fishGain = 1;
+
+    const currentExp = document.getElementById('currentExp');
+    const currentLevel = document.getElementById('currentLevel');
+    const missingExp = document.getElementById('missingExp')
 
     const carpButton = document.getElementById('carp');
     const rawCarp = document.getElementById('rawCarp');
@@ -209,6 +231,11 @@
         carpAmount += fishGain;
         rawCarp.innerHTML = `${carpAmount} Raw Carp`;
         rawCarpActive.innerHTML = `${carpAmount} Raw Carp`;
+        expAmount += carpExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= carpExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     carpButton.addEventListener('click', function(e){
@@ -228,6 +255,11 @@
         codAmount += fishGain;
         rawCod.innerHTML = `${codAmount} Raw Cod`;
         rawCodActive.innerHTML = `${codAmount} Raw Cod`;
+        expAmount += codExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= codExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        leveUp();
     })
 
     codButton.addEventListener('click', function(e){
@@ -247,6 +279,11 @@
         salmonAmount += fishGain;
         rawSalmon.innerHTML = `${salmonAmount} Raw Salmon`;
         rawSalmonActive.innerHTML = `${salmonAmount} Raw Salmon`;
+        expAmount += salmonExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= salmonExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     salmonButton.addEventListener('click', function(e){
@@ -266,6 +303,11 @@
         troutAmount += fishGain;
         rawTrout.innerHTML = `${troutAmount} Raw Trout`;
         rawTroutActive.innerHTML = `${troutAmount} Raw Trout`;
+        expAmount += troutExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= troutExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     troutButton.addEventListener('click', function(e){
@@ -339,6 +381,22 @@
     function stopTroutFishing(){
         clearInterval(troutFishingInterval);
     }
+
+    function levelUp(){
+            if (expAmount >= requiredExp){
+            levelAmount += gainLevel;
+            currentLevel.innerHTML = `Level ${levelAmount}`;
+            expAmount = 0
+            currentExp.innerHTML = `${expAmount} exp`;
+            requiredExpActive = 100;
+            missingExp.innerHTML = `${requiredExpActive} exp`;
+            };
+
+            /*if (levelAmount >= 1){
+                requiredExp *= 2;
+                console.log(requiredExp);
+            }*/
+        }
 
 </script>
 </body>
