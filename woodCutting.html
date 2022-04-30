@@ -15,23 +15,18 @@
     <div class="content" id="header-content">
         <header><h1>Wood Cutting</h1></header>
     </div>
-    <div class="content" id="level-content">
-        <div class="row">
-            <label>Forester Level:</label>
-            <label id="currentLevel">0</label>
-            /
-            <label>100</label>
-        </div>
-        <br>
-        <div class="row">  
-            <label>Current Exp: </label>
-            <label id="currentExp">0</label>
-        </div>
-        <div class="row">
-            <label>Required XP: </label>
-            <label id="missingExp">100</label>
-        </div>
+    <div class="row">
+        <label>Forester Level:</label>
+        <label id="currentLevel">0</label>
     </div>
+    <div class="row">
+        <label>Current Exp: </label>
+        <label id="currentExp">0</label>
+    </div>
+    <div class="row">    
+        <label>Required XP: </label>
+        <label id="missingExp">100</label>
+    </div>        
     <div class="content" id="woodcutting-content">
         <div>
             <button id="oakTree" class="oakTreeButton">
@@ -60,9 +55,9 @@
                     <small>10 XP / Click</small>
                 </div>
                 <div class="image-area">
-                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
                 </div>
-                <h2 class="cancel-cutting">Stop Fishing</h2>
+                <h2 class="cancel-cutting">Stop Cutting</h2>
                 <div class="log-area">
                     <h2 id="oakLogsActive">0 Oak Log</h2>
                 </div>
@@ -96,7 +91,7 @@
                     <small>20 XP / Click</small>
                 </div>
                 <div class="image-area">
-                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
                 </div>
                 <h2 class="cancel-cutting">Stop Cutting</h2>
                 <div class="log-area">
@@ -132,7 +127,7 @@
                     <small>30 XP / Click</small>
                 </div>
                 <div class="image-area">
-                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
                 </div>
                 <h2 class="cancel-cutting">Stop Cutting</h2>
                 <div class="log-area">
@@ -168,7 +163,7 @@
                     <small>40 XP / Click</small>
                 </div>
                 <div class="image-area">
-                    <img class="image" src="https://cdn-icons-png.flaticon.com/512/235/235429.png" height="50" width="60" alt="tree">
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/en/archive/c/c6/20200527142458%21Simple_Tree_Clipart.png" height="50" width="60" alt="tree">
                 </div>
                 <h2 class="cancel-cutting">Stop Cutting</h2>
                 <div class="log-area">
@@ -236,7 +231,7 @@
 
     //Oak tree Event Listeners
     oakClickerButton.addEventListener('click', function(e){
-        oakAmount += cutGain;
+        oakLogAmount += chopGain;
         oakLogs.innerHTML = `${oakLogAmount} Oak Logs`;
         oakLogsActive.innerHTML = `${oakLogAmount} Oak Logs`;
         expAmount += oakExpGain;
@@ -248,9 +243,7 @@
 
     oakTreeButton.addEventListener('click', function(e){
         oakTreeButton.classList.add('hidden');
-        console.log(oakTreeButton);
         stopChoppingOakButton.classList.remove('hidden');
-        console.log(stopChoppingOakButton);
         startOakChopping();
     })
 
@@ -263,7 +256,7 @@
     //Birch tree Event Listeners
 
     birchClickerButton.addEventListener('click', function(e){
-        birchAmount += cutGain;
+        birchLogAmount += chopGain;
         birchLogs.innerHTML = `${birchLogAmount} Birch Logs`;
         birchLogsActive.innerHTML = `${birchLogAmount} Birch Logs`;
         expAmount += birchExpGain;
@@ -288,9 +281,9 @@
     //Spruce Tree Event Listeners
 
     spruceClickerButton.addEventListener('click', function(e){
-        spruceAmount += cutGain;
+        spruceLogAmount += chopGain;
         spruceLogs.innerHTML = `${spruceLogAmount} Spruce Logs`;
-        SpruceLogsActive.innerHTML = `${spruceLogAmount} Spruce Logs`;
+        spruceLogsActive.innerHTML = `${spruceLogAmount} Spruce Logs`;
         expAmount += spruceExpGain;
         currentExp.innerHTML = `${expAmount} exp`;
         requiredExpActive -= spruceExpGain;
@@ -313,7 +306,7 @@
     //Pine Tree Event Listeners
 
     pineClickerButton.addEventListener('click', function(e){
-        pineAmount += cutGain;
+        pineLogAmount += chopGain;
         pineLogs.innerHTML = `${pineLogAmount} Pine Logs`;
         pineLogsActive.innerHTML = `${pineLogAmount} Pine Logs`;
         expAmount += pineExpGain;
