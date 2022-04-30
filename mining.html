@@ -15,14 +15,17 @@
     <div class="content" id="header-content">
         <header><h1>Mining</h1></header>
     </div>
-    <div class="content" id="level-content">
+    <div class="row">
         <label>Miner Level:</label>
-        <label id="level">0</label>
-        <small>/</small>
-        <label>100</label>
-        -
+        <label id="currentLevel">0</label>
+    </div>
+    <div class="row">
+        <label>Current Exp: </label>
+        <label id="currentExp">0</label>
+    </div>
+    <div class="row">    
         <label>Required XP: </label>
-        <label id="xpRequired">100</label>
+        <label id="missingExp">100</label>
     </div>
     <div class="content" id="mining-content">
         <div>
@@ -43,6 +46,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopCoal" class="hidden stopCoalButton">
+                <div class="mining-card-info">
+                    <small>Coal</small>
+                    <br>
+                    <strong>Mine</strong>
+                    <br>
+                    <small>10 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://img.icons8.com/color/480/iron-ore.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-mining">Stop Mining</h2>
+                <div class="ore-area">
+                    <h2 id="coalOreActive">0 Coal Ore</h2>
+                </div>
+            </button>
+            <button id="coalClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="copper" class="copperButton">
@@ -62,6 +82,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopCopper" class="hidden stopCopperButton">
+                <div class="mining-card-info">
+                    <small>Copper</small>
+                    <br>
+                    <strong>Mine</strong>
+                    <br>
+                    <small>20 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://icon-library.com/images/ore-icon/ore-icon-22.jpg" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-mining">Stop Mining</h2>
+                <div class="ore-area">
+                    <h2 id="copperOreActive">0 Copper Ore</h2>
+                </div>
+            </button>
+            <button id="copperClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="iron" class="ironButton">
@@ -81,6 +118,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopIron" class="hidden stopIronButton">
+                <div class="mining-card-info">
+                    <small>Iron</small>
+                    <br>
+                    <strong>Mine</strong>
+                    <br>
+                    <small>30 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://icon-library.com/images/ore-icon/ore-icon-25.jpg" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-mining">Stop Mining</h2>
+                <div class="ore-area">
+                    <h2 id="ironOreActive">0 Iron Ore</h2>
+                </div>
+            </button>
+            <button id="ironClickerButton" class="hidden"></button>
         </div>
         <div>
             <button id="gold" class="goldButton">
@@ -100,6 +154,23 @@
                     </div>
                 </div>
             </button>
+            <button id="stopGold" class="hidden stopGoldButton">
+                <div class="mining-card-info">
+                    <small>Gold</small>
+                    <br>
+                    <strong>Mine</strong>
+                    <br>
+                    <small>40 XP / Click</small>
+                </div>
+                <div class="image-area">
+                    <img class="image" src="https://www.pngkey.com/png/full/308-3083677_gold-ore-icon-vector-gold-ore.png" height="50" width="60" alt="tree">
+                </div>
+                <h2 class="cancel-mining">Stop Mining</h2>
+                <div class="ore-area">
+                    <h2 id="goldOreActive">0 Gold Ore</h2>
+                </div>
+            </button>
+            <button id="goldClickerButton" class="hidden"></button>
         </div>
     </div>
 </div>
@@ -111,22 +182,45 @@
     let ironAmount = 0;
     let goldAmount = 0;
 
+    let expAmount = 0;
+    let coalExpGain = 10;
+    let copperExpGain = 20;
+    let ironExpGain = 30;
+    let goldExpGain = 40;
+    let gainLevel = 1;
+    let levelAmount = 1;
+    let requiredExp = 100;
+    let requiredExpActive = 100;
+
     let mineGain = 1;
+
+    const currentExp = document.getElementById('currentExp');
+    const currentLevel = document.getElementById('currentLevel');
+    const missingExp = document.getElementById('missingExp')
 
     const coalButton = document.getElementById('coal');
     const coalOre = document.getElementById('coalOre');
+    const coalClickerButton = document.getElementById('coalClickerButton');
+    const stopMiningCoalButton = document.getElementById('stopCoal');
+    const coalOreActive = document.getElementById('coalOreActive');
 
     const copperButton = document.getElementById('copper');
     const copperOre = document.getElementById('copperOre');
+    const copperClickerButton = document.getElementById('copperClickerButton');
+    const stopMiningCopperButton = document.getElementById('stopCopper');
+    const copperOreActive = document.getElementById('copperOreActive');
 
     const ironButton = document.getElementById('iron');
     const ironOre = document.getElementById('ironOre');
+    const ironClickerButton = document.getElementById('ironClickerButton');
+    const stopMiningIronButton = document.getElementById('stopIron');
+    const ironOreActive = document.getElementById('ironOreActive');
 
     const goldButton = document.getElementById('gold');
     const goldOre = document.getElementById('goldOre');
-
-    //const level = document.getElementById('level');
-    //const xpRequired = document.getElementById('xpRequired');
+    const goldClickerButton = document.getElementById('goldClickerButton');
+    const stopMiningGoldButton = document.getElementById('stopGold');
+    const goldOreActive = document.getElementById('goldOreActive');
 
     //Todo Create a Level System
     //Todo Create a Combat System
@@ -136,25 +230,172 @@
     //Todo Create a class system
     //Todo Create a skill system
 
-    coalButton.addEventListener('click', function(e){
+    //Coal Ore Event Listeners
+    coalClickerButton.addEventListener('click', function(e){
         coalAmount += mineGain;
         coalOre.innerHTML = `${coalAmount} Coal Ore`;
+        coalOreActive.innerHTML = `${coalAmount} Coal Ore`;
+        expAmount += coalExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= coalExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
+    })
+
+    coalButton.addEventListener('click', function(e){
+        coalButton.classList.add('hidden');
+        stopMiningCoalButton.classList.remove('hidden');
+        startCoalMining();
+    })
+
+    stopMiningCoalButton.addEventListener('click', function(e){
+        coalButton.classList.remove('hidden');
+        stopMiningCoalButton.classList.add('hidden');
+        stopCoalMining();
+    })
+
+    //Copper Ore Event Listeners
+    copperClickerButton.addEventListener('click', function(e){
+        copperAmount += mineGain;
+        copperOre.innerHTML = `${copperAmount} Copper Ore`;
+        copperOreActive.innerHTML = `${copperAmount} Copper Ore`;
+        expAmount += copperExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= copperExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     copperButton.addEventListener('click', function(e){
-        copperAmount += mineGain;
-        copperOre.innerHTML = `${copperAmount} Copper Ore`;
+        copperButton.classList.add('hidden');
+        stopMiningCopperButton.classList.remove('hidden');
+        startCopperMining();
+    })
+
+    stopMiningCopperButton.addEventListener('click', function(e){
+        copperButton.classList.remove('hidden');
+        stopMiningCopperButton.classList.add('hidden');
+        stopCopperMining();
+    })
+
+    //Iron Ore Event Listeners
+    ironClickerButton.addEventListener('click', function(e){
+        ironAmount += mineGain;
+        ironOre.innerHTML = `${ironAmount} Iron Ore`;
+        ironOreActive.innerHTML = `${ironAmount} Iron Ore`;
+        expAmount += ironExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= ironExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     ironButton.addEventListener('click', function(e){
-        ironAmount += mineGain;
-        ironOre.innerHTML = `${ironAmount} Iron Ore`;
+        ironButton.classList.add('hidden');
+        stopMiningIronButton.classList.remove('hidden');
+        startIronMining();
+    })
+
+    stopMiningIronButton.addEventListener('click', function(e){
+        ironButton.classList.remove('hidden');
+        stopMiningIronButton.classList.add('hidden');
+        stopIronMining();
+    })
+
+    //Gold Ore Event Listeners
+    goldClickerButton.addEventListener('click', function(e){
+        goldAmount += mineGain;
+        goldOre.innerHTML = `${goldAmount} Gold Ore`;
+        goldOreActive.innerHTML = `${goldAmount} Gold Ore`;
+        expAmount += goldExpGain;
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive -= goldExpGain;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        levelUp();
     })
 
     goldButton.addEventListener('click', function(e){
-        goldAmount += mineGain;
-        goldOre.innerHTML = `${goldAmount} Gold Ore`;
+        goldButton.classList.add('hidden');
+        stopMiningGoldButton.classList.remove('hidden');
+        startGoldMining();
     })
+
+    stopMiningGoldButton.addEventListener('click', function(e){
+        goldButton.classList.remove('hidden');
+        stopMiningGoldButton.classList.add('hidden');
+        stopGoldMining();
+    })
+
+    //Coal Button Functions
+    let coalMiningInterval;
+
+    function coal(){
+        document.getElementById("coalClickerButton").click();
+    }
+
+    function startCoalMining(){
+        coalMiningInterval = setInterval(coal, 10000);
+    }
+
+    function stopCoalMining(){
+        clearInterval(coalMiningInterval);
+    }
+
+    //Copper Button Functions
+    let copperMiningInterval;
+
+    function copper(){
+        document.getElementById("copperClickerButton").click();
+    }
+
+    function startCopperMining(){
+        copperMiningInterval = setInterval(copper, 10000);
+    }
+
+    function stopCopperMining(){
+        clearInterval(copperMiningInterval);
+    }
+
+    //Iron Button Functions
+    let ironMiningInterval;
+
+    function iron(){
+        document.getElementById("ironClickerButton").click();
+    }
+
+    function startIronMining(){
+        ironMiningInterval = setInterval(iron, 10000);
+    }
+
+    function stopIronMining(){
+        clearInterval(ironMiningInterval);
+    }
+
+    //Gold Button Functions
+    let goldMiningInterval;
+
+    function gold(){
+        document.getElementById("goldClickerButton").click();
+    }
+
+    function startGoldMining(){
+        coalMiningInterval = setInterval(gold, 10000);
+    }
+
+    function stopGoldMining(){
+        clearInterval(goldMiningInterval);
+    }
+
+    function levelUp(){
+        if (expAmount >= requiredExp){
+        levelAmount += gainLevel;
+        currentLevel.innerHTML = `Level ${levelAmount}`;
+        expAmount = 0
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive = 100;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        };
+    }   
 </script>
 </body>
 </html>

@@ -15,22 +15,17 @@
     <div class="content" id="header-content">
         <header><h1>Fishing</h1></header>
     </div>
-    <div class="content" id="level-content">
-        <div class="row">
-            <label>Fisherman Level:</label>
-            <label id="currentLevel">0</label>
-            /
-            <label>100</label>
-        </div>
-        <br>
-        <div class="row">  
-            <label>Current Exp: </label>
-            <label id="currentExp">0</label>
-        </div>
-        <div class="row">
-            <label>Required XP: </label>
-            <label id="missingExp">100</label>
-        </div>
+    <div class="row">
+        <label>Fisherman Level:</label>
+        <label id="currentLevel">0</label>
+    </div>
+    <div class="row">
+        <label>Current Exp: </label>
+        <label id="currentExp">0</label>
+    </div>
+    <div class="row">    
+        <label>Required XP: </label>
+        <label id="missingExp">100</label>
     </div>
     <div class="content" id="fishing-content">
         <div>
@@ -383,21 +378,40 @@
     }
 
     function levelUp(){
-            if (expAmount >= requiredExp){
-            levelAmount += gainLevel;
-            currentLevel.innerHTML = `Level ${levelAmount}`;
-            expAmount = 0
-            currentExp.innerHTML = `${expAmount} exp`;
-            requiredExpActive = 100;
-            missingExp.innerHTML = `${requiredExpActive} exp`;
-            };
+        if (expAmount >= requiredExp){
+        levelAmount += gainLevel;
+        currentLevel.innerHTML = `Level ${levelAmount}`;
+        expAmount = 0
+        currentExp.innerHTML = `${expAmount} exp`;
+        requiredExpActive = 100;
+        missingExp.innerHTML = `${requiredExpActive} exp`;
+        };
+    }    
 
-            /*if (levelAmount >= 1){
-                requiredExp *= 2;
-                console.log(requiredExp);
-            }*/
+
+
+
+    /*const inpKey = document.getElementById('inpKey');
+    const inpValue = document.getElementById('inpValue');
+    const btnInster = document.getElementById('btnInsert');
+    const lsOutput = document.getElementById('lsOutput');
+
+    btnInsert.onclick = function(){
+        const key = inpKey.value;
+        const value = inpValue.value;
+
+        if (key && value){
+            localStorage.setItem(key, value);
+            location.reload();
         }
+    };
 
+    for (let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+
+        lsOutput.innerHTML += `${key}: ${value}<br />`;
+    }*/
 </script>
 </body>
 </html>

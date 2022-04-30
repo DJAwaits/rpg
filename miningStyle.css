@@ -122,3 +122,35 @@ nav li:hover .dropdown-content {
     margin: 16px;
     background-color:#343a40;
 }
+
+.stopCoalButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopCopperButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopIronButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.stopGoldButton {
+    width: 170px;
+    min-height: 150px;
+    margin: 16px;
+    background-color:#343a40;
+}
+
+.cancel-mining {
+    color:red;
+}
